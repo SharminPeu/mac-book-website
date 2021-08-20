@@ -12,8 +12,7 @@ const paidDelivery = document.getElementById('paid-delivery');
 const deliveryCharge = document.getElementById('delivery-charge');
 const pomoCode = document.getElementById('pomo-code');
 const buttonApplied = document.getElementById('button');
-const finalTotal=document.getElementById('final-total')
-
+const finalTotal=document.getElementById('final-total');
 //  function updateCost(number)
 //  {
 //      memoryCost.innerText=number;
@@ -74,12 +73,16 @@ paidDelivery.addEventListener('click', function () {
 // for bouns part 
 // handle pomo code 
 buttonApplied.addEventListener('click',function(){
-if(pomoCode.innerText =='stevekaku')
-{
-    console.log('right');
-}
-else{
-    console.log('not right')
-}
 
+    if(pomoCode.value.toLowerCase() =='stevekaku')
+    {
+     const final=finalTotal.innerText-parseFloat(finalTotal.innerText/5);
+     finalTotal.innerText=final;
+     pomoCode.value='';
+    }
+    else{
+        updateTotalPrice();
+        pomoCode.value='';
+    }
+    
 })
