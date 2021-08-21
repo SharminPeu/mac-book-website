@@ -12,25 +12,10 @@ const paidDelivery = document.getElementById('paid-delivery');
 const deliveryCharge = document.getElementById('delivery-charge');
 const pomoCode = document.getElementById('pomo-code');
 const buttonApplied = document.getElementById('button');
-const finalTotal=document.getElementById('final-total');
-//  function updateCost(number)
-//  {
-//      memoryCost.innerText=number;
-//      storageCost.innerText=number;
-//  }
-//  for memory part 
-lowerMemory.addEventListener('click', function () {
-    memoryCost.innerText = '0';
-    // updateCost('0');
-    updateTotalPrice();
-})
-highMemory.addEventListener('click', function () {
-    memoryCost.innerText = '180';
-    // updateCost('180');
-    updateTotalPrice();
-})
+const finalTotal = document.getElementById('final-total');
 
-// update total
+
+// update total Price
 function updateTotalPrice() {
     const prices = parseInt(bestPrice.innerText);
     const cost = parseInt(memoryCost.innerText);
@@ -38,51 +23,75 @@ function updateTotalPrice() {
     const delivery = parseInt(deliveryCharge.innerText);
     const totalPrice = prices + cost + storage + delivery;
     price.innerText = totalPrice;
-    finalTotal.innerText=totalPrice;
+    // finalTotal.innerText = totalPrice;
 
 }
+
+// update Final Total
+function updateFinalTotal() {
+    updateTotalPrice();
+    finalTotal.innerText = price.innerText;
+
+}
+
+// handle memory part
+lowerMemory.addEventListener('click', function () {
+    memoryCost.innerText = '0';
+    updateTotalPrice();
+    updateFinalTotal();
+});
+highMemory.addEventListener('click', function () {
+    memoryCost.innerText = '180';
+    updateTotalPrice();
+    updateFinalTotal();
+});
+
 
 // for storage part 
 lowerStorage.addEventListener('click', function () {
     storageCost.innerText = '0';
-    // updateCost('0');
     updateTotalPrice();
-})
+    updateFinalTotal();
+});
 mediumStorage.addEventListener('click', function () {
     storageCost.innerText = '100';
-    // updateCost('100');
     updateTotalPrice();
-})
+    updateFinalTotal();
+});
 highStorage.addEventListener('click', function () {
     storageCost.innerText = '180';
-    // updateCost('180');
     updateTotalPrice();
-})
+    updateFinalTotal();
+});
+
 // for delivery part 
 freeDelivery.addEventListener('click', function () {
     deliveryCharge.innerText = '0';
-    // updateCost('180');
     updateTotalPrice();
-})
+    updateFinalTotal();
+});
 paidDelivery.addEventListener('click', function () {
     deliveryCharge.innerText = '20';
-    // updateCost('180');
     updateTotalPrice();
-})
+    updateFinalTotal();
+});
 
 // for bouns part 
 // handle pomo code 
-buttonApplied.addEventListener('click',function(){
-
-    if(pomoCode.value.toLowerCase() =='stevekaku')
-    {
-     const final=finalTotal.innerText-parseFloat(finalTotal.innerText/5);
-     finalTotal.innerText=final;
-     pomoCode.value='';
+function setPomoCode() {
+    if (pomoCode.value.toLowerCase() == 'stevekaku') {
+        const final = finalTotal.innerText - parseFloat(finalTotal.innerText / 5);
+        finalTotal.innerText = final;
+        pomoCode.value = '';
     }
-    else{
+    else {
         updateTotalPrice();
-        pomoCode.value='';
+        updateFinalTotal();
+        pomoCode.value = '';
     }
-    
-})
+}
+
+// handle pomo code and Final total price
+buttonApplied.addEventListener('click', function () {
+    setPomoCode();
+});
