@@ -1,7 +1,7 @@
-const lowerMemory = document.getElementById('low-memory');
+ const lowerMemory = document.getElementById('low-memory');
 const highMemory = document.getElementById('high-memory');
 const memoryCost = document.getElementById('memory-cost');
-const bestPrice = document.getElementById('best-price');
+ const bestPrice = document.getElementById('best-price');
 const price = document.getElementById('total-price');
 const lowerStorage = document.getElementById('low-storage');
 const mediumStorage = document.getElementById('medium-storage');
@@ -13,7 +13,6 @@ const deliveryCharge = document.getElementById('delivery-charge');
 const pomoCode = document.getElementById('pomo-code');
 const buttonApplied = document.getElementById('button');
 const finalTotal = document.getElementById('final-total');
-
 
 // update total Price
 function updateTotalPrice() {
